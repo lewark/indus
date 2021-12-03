@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GreatBath.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Label3D.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ProceduralSky" id=2]
 sun_longitude = -13.72
@@ -23,3 +24,16 @@ environment = SubResource( 3 )
 transform = Transform( 0.584817, -0.757944, -0.288981, -0.649488, -0.650958, 0.392961, -0.485957, -0.0421205, -0.872967, 0, 9.41054, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Label3D" parent="Spatial" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8575, 0, 0 )
+text = "Hellodf
+sfds
+fd
+fsdfsd
+fsd
+fsd
+fsd
+"
