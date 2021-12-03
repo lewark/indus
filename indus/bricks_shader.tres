@@ -1,0 +1,38 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+
+uniform vec3 BRICK_SIZE = vec3(0.36,0.09,0.18);
+uniform float MORTAR_SIZE = 0.02;
+
+uniform vec3 BRICK_COLOR = vec3(0.5,0.5,0.5);
+uniform vec3 MORTAR_COLOR = vec3(1.,1.,1.);
+
+varying vec3 pos;
+varying vec3 mesh_norm;
+
+void vertex()
+{
+	pos = VERTEX;
+	mesh_norm = NORMAL;
+}
+
+void fragment()
+{
+	ALBEDO = mesh_norm;
+	
+	float v_axis = step(0.707,abs(mesh_norm.y));
+	
+	float axis = step(0.707,abs(mesh_norm.z));
+	
+	vec2 p = pos.xy * axis + pos.zy * (1.0-axis);
+	
+	float offset = fract(floor(p.y/BRICK_SIZE.y)*0.5);
+	vec2 a = step(MORTAR_SIZE,fract(p/BRICK_SIZE.xy+vec2(offset,0.))*BRICK_SIZE.xy);
+	
+	vec2 b = step(MORTAR_SIZE,fract(pos.zx/BRICK_SIZE.xz)*BRICK_SIZE.xz);
+	
+	float m = (a.x * a.y) * (1.-v_axis) + (b.x * b.y) * v_axis;
+	ALBEDO = BRICK_COLOR * (1.-m) + MORTAR_COLOR * m;
+}"
