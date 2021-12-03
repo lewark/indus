@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://bricks_shader.tres" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/BRICK_SIZE = Vector3( 0.36, 0.09, 0.18 )
+shader_param/MORTAR_SIZE = 0.02
+shader_param/BRICK_COLOR = Vector3( 0.98, 0.745, 0.738 )
+shader_param/MORTAR_COLOR = Vector3( 0.5, 0.415, 0.412 )

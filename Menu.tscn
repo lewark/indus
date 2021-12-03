@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/DejaVuSans-Bold.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="Menu" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = 368.0
+margin_top = 196.0
+margin_right = 656.0
+margin_bottom = 403.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 286.0
+margin_bottom = 205.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+margin_right = 284.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 1 )
+text = "Indus Demo"
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 284.0
+margin_bottom = 149.0
+text = "Controls:
+Use the mouse to look around
+Use the W, A, S, D keys to walk
+Click on things to interact/read
+Press Escape to return to the menu"
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 284.0
+margin_bottom = 176.0
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 284.0
+margin_bottom = 203.0
+size_flags_horizontal = 3
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
