@@ -1,48 +1,59 @@
 extends Spatial
 
+const cam_dist = 12
+const friction = 0.9
+const speed = 0.5
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var cam_angle = 0
+#var vel = 0
+var pressed = false
+var in_menu = true
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-var cam_angle = 0
-const cam_dist = 10
-const friction = 0.9
-const speed = 0.001
-
-var vel = 0
-
-var pressed = false
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#cam_angle += delta
-	cam_angle += vel
-	vel = vel * friction
+	cam_angle += delta * speed
+	#cam_angle += vel
+	#vel = vel * frictionf
 	$Camera.rotation.y = cam_angle
 	$Camera.transform.origin.x = sin(cam_angle) * cam_dist
 	$Camera.transform.origin.z = cos(cam_angle) * cam_dist
-
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		pressed = event.pressed
-	if event is InputEventMouseMotion and pressed:
-		vel += event.relative.x * speed
-
-func loadGui(scene):
-	$Gui/MarginContainer.add_child(scene.instance())
-	for child in $Markers.get_children():
-		child.hide_marker()
-	$Gui.show()
 	
-func exitGui():
-	for child in $Gui/MarginContainer.get_children():
-		child.queue_free()
-	for child in $Markers.get_children():
-		child.show_marker()
-	$Gui.hide()
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED and not in_menu:
+		$Menu.show()
+		$PanelContainer.hide()
+		$Camera.current = true
+		in_menu = true
+
+#func _input(event):
+#	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+#		pressed = event.pressed
+#	if event is InputEventMouseMotion and pressed:
+#		vel += event.relative.x * speed
+
+func show_gui(gui):
+	$GUI.add_child(gui)
+	$GUI.show()
+	$Menu.hide()
+	$Overlay.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	in_menu = true
+	
+func toggle_menu():
+	if not in_menu:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		$Menu.show()
+		$Overlay.hide()
+		$GUI.hide()
+		$Camera.current = true
+		in_menu = true
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		$Menu.hide()
+		$Overlay.show()
+		$Player/Camera.current = true
+		in_menu = false
+		for child in $GUI.get_children():
+			child.queue_free()

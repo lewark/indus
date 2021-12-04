@@ -1,11 +1,10 @@
-extends "res://Marker.gd"
+extends MarginContainer
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-export (PackedScene) var scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,5 +15,10 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func click():
-	$"../..".loadGui(scene)
+func set_info(title, desc):
+	$PanelContainer/VBoxContainer/Title.text = title
+	$PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Description.bbcode_text = desc
+
+
+func _on_CloseButton_pressed():
+	$"../..".toggle_menu()

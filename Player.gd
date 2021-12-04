@@ -8,7 +8,7 @@ extends KinematicBody
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Camera/RayCast.add_exception(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,7 +16,7 @@ func _ready():
 #	pass
 
 const GRAVITY = 9.8
-const SENSITIVITY = 0.01
+const SENSITIVITY = 0.005
 
 const SPEED = 3
 
@@ -59,6 +59,18 @@ func _physics_process(delta):
 	
 
 func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		$Camera.rotation.x = clamp($Camera.rotation.x - event.relative.y * SENSITIVITY, -PI/2*0.99, PI/2*0.99)
-		$Camera.rotation.y = fmod($Camera.rotation.y - event.relative.x * SENSITIVITY,PI * 2)
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			$Camera.rotation.x = clamp($Camera.rotation.x - event.relative.y * SENSITIVITY, -PI/2*0.99, PI/2*0.99)
+			$Camera.rotation.y = fmod($Camera.rotation.y - event.relative.x * SENSITIVITY,PI * 2)
+		elif event is InputEventMouseButton and event.pressed:
+			var hit = $Camera/RayCast.get_collider()
+			if hit:
+				if hit.has_method("interact"):
+					hit.interact()
+	
+func get_hover_text():
+	var hit = $Camera/RayCast.get_collider()
+	if hit and hit.has_method("get_hover_text"):
+		return hit.get_hover_text()
+	return null

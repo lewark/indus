@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Label3D.gd" type="Script" id=1]
-[ext_resource path="res://Theme.tres" type="Theme" id=3]
+[ext_resource path="res://gui/Theme.tres" type="Theme" id=3]
 
 [node name="Label3D" type="Spatial"]
 script = ExtResource( 1 )

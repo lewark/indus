@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gui/Overlay.gd" type="Script" id=1]
+[ext_resource path="res://gui/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/crosshair.png" type="Texture" id=3]
+
+[node name="Overlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 14.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PanelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 156.0
+margin_bottom = 21.0
+text = "Press Esc for menu"
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+margin_right = 14.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PanelContainer2"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 102.0
+margin_bottom = 21.0
+text = "Click to read"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

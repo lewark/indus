@@ -16,4 +16,7 @@ shape = SubResource( 1 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618677, 0 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="."]
+[node name="RayCast" type="RayCast" parent="Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -3 )
+collide_with_areas = true
