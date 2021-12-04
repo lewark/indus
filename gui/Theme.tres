@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=12 format=2]
+[gd_resource type="Theme" load_steps=14 format=2]
 
 [ext_resource path="res://assets/fonts/DejaVuSans.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/DejaVuSans-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/DejaVuSans-Oblique.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
@@ -32,6 +33,9 @@ bg_color = Color( 0, 0, 0, 0.780392 )
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=9]
 font_data = ExtResource( 1 )
 
@@ -48,4 +52,5 @@ Label/fonts/font = SubResource( 2 )
 Panel/styles/panel = SubResource( 1 )
 PanelContainer/styles/panel = SubResource( 1 )
 RichTextLabel/fonts/bold_font = SubResource( 8 )
+RichTextLabel/fonts/italics_font = SubResource( 10 )
 RichTextLabel/fonts/normal_font = SubResource( 9 )

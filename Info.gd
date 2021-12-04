@@ -25,4 +25,4 @@ func interact():
 	$"../..".show_gui(s)
 	
 func get_hover_text():
-	return "Click to read"
+	return title + ": Click to read"

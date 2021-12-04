@@ -2,7 +2,7 @@ extends Spatial
 
 const cam_dist = 12
 const friction = 0.9
-const speed = 0.5
+const speed = 0.25
 
 var cam_angle = 0
 #var vel = 0
@@ -23,7 +23,8 @@ func _process(delta):
 	
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED and not in_menu:
 		$Menu.show()
-		$PanelContainer.hide()
+		$Menu/PanelContainer/VBoxContainer/Button.grab_focus()
+		$Overlay.hide()
 		$Camera.current = true
 		in_menu = true
 
@@ -45,6 +46,7 @@ func toggle_menu():
 	if not in_menu:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		$Menu.show()
+		$Menu/PanelContainer/VBoxContainer/Button.grab_focus()
 		$Overlay.hide()
 		$GUI.hide()
 		$Camera.current = true

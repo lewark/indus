@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gui/Menu.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/fonts/DejaVuSans.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://EasterEgg.gd" type="Script" id=8]
 [ext_resource path="res://WaterMaterial.tres" type="Material" id=9]
+[ext_resource path="res://JumpHint.gd" type="Script" id=10]
 
 [sub_resource type="ProceduralSky" id=2]
 ground_bottom_color = Color( 0.788235, 0.752941, 0.584314, 1 )
@@ -65,6 +66,8 @@ PanelContainer/styles/panel = SubResource( 1 )
 [sub_resource type="PlaneMesh" id=12]
 size = Vector2( 10, 14 )
 
+[sub_resource type="BoxShape" id=13]
+
 [node name="Main" type="Spatial"]
 script = ExtResource( 6 )
 
@@ -80,17 +83,58 @@ transform = Transform( 0.584817, -0.757944, -0.288981, -0.649488, -0.650958, 0.3
 
 [node name="InfoObjects" type="Spatial" parent="."]
 
-[node name="Info" parent="InfoObjects" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, -0.5, 0 )
-title = "Mohenjo-Daro"
-description = "Mohenjo-Daro"
+[node name="GreatBath" parent="InfoObjects" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, -3 )
+title = "The Great Bath of Mohenjo-Daro"
+description = "This is a rough model of the Great Bath, which is located in the ancient city of Mohenjo-Daro in Pakistan. This city is thought to have been the most populous of the Indus Valley Civilization, which existed circa 2500-1500 BC.
+
+The Indus Valley Civilization is particularly notable for both its carefully planned cities and the complex infrastructure contained within, such as sewer systems and the first toilets. Each house in Mohenjo-Daro was connected to the city-wide plumbing system and had its own bathing room.
+
+Mohenjo-Daro is the earliest known planned city in the world. The foundation of Mohenjo-Daro alone is thought to have taken 10,000 workers one year to build.
+
+The inside of the Great Bath is sealed with asphalt waterproofing. The interior measures 7 x 12 m (23 x 40 ft) in size."
+
+[node name="Seals" parent="InfoObjects" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 1.8, 10 )
+title = "Trade, Seals, and Writing"
+description = "The Indus Valley Civilization exported resources like cotton, wood, and ivory to civilizations in Mesopotamia, including the cities of Ur and Akkad. Workers also produced artifacts like jewelry and toys. Types of toys found include \"animal-shaped whistles, miniature carts, and board games\" (Lauderdale).
+
+Many seals have been found that contain depictions of animals and gods alongside a system of writing that so far has not been successfully translated. It is thought that important families possessed their own seals, and that merchants used them to stamp clay tags on goods."
+
+[node name="Standardization" parent="InfoObjects" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.4, 1.8, -3.8 )
+title = "Standardization"
+description = "The bricks used by the Indus Valley Civilization in construction were carefully standardized, measuring roughly 9x18x36 cm.
+
+The system of weights created by the Indus Valley Civilization for trade and commerce survived long after the civilization's collapse. It was used to create the first coins in India circa 700-600 BC, and is even still used for measurement in areas of India and Pakistan."
+
+[node name="Preservation" parent="InfoObjects" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.3, 0.8, -1.4 )
+title = "Preservation"
+description = "A combination of salt leaching, sun exposure, and moist winter air causes gradual damage to bricks at the Mohenjo-Daro site. Though restoration was performed in 1972 by the government of Pakistan, and a system was installed to drain water from the water table to reduce the impact of salt, the integrity of the site is still threatened by these factors."
 
 [node name="Credits" parent="InfoObjects" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, -0.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.3, 1.7, -7.9 )
 title = "Credits"
-description = "Sound effects: [url]https://freesound.org/people/SamuelGremaud/sounds/517787/[/url]
-[url]https://www.youtube.com/watch?v=DbnxPY3D1Pg[/url]
-[url]https://whc.unesco.org/en/list/138/gallery/[/url]"
+description = "Works Consulted
+
+\"Archaeological Ruins at Mohenjodaro.\" UNESCO. [i]World Heritage List,[/i] 1980, [url]https://whc.unesco.org/en/list/138[/url]. Accessed 28 Nov. 2021.
+
+\"Archaeological Ruins at Moenjodaro (UNESCO/NHK).\" UNESCO. [i]YouTube,[/i] 3 Jun. 2010, [url]https://www.youtube.com/watch?v=DbnxPY3D1Pg[/url]. Accessed 4 Dec. 2021.
+
+\"Indus Valley Civilization.\" [i]Columbia Electronic Encyclopedia,[/i] 6th Edition, Mar. 2021, p. 1.
+
+Lauderdale, Diane Sperling. \"The Treasures of Mohenjo-Daro.\" [i]Calliope,[/i] vol. 1, no. 5, May 1991, p. 4.
+
+Lawler, Andrew. \"Mohenjo-Daro’s New Story.\" [i]Archaeology,[/i] vol. 66, no. 1, Jan. 2013, p. 32.
+
+Robinson, Andrew. \"Forgotten Utopia.\" [i]New Scientist,[/i] vol. 231, no. 3091, Sep. 2016, pp. 30–33, [url]https://www.newscientist.com/article/mg23130910-200-the-real-utopia-this-ancient-civilisation-thrived-without-war/[/url]. Accessed 4 Dec. 2021.
+
+------
+
+Made using Audacity, Blender, GIMP, and Godot Engine.
+
+Sound effects: [url]https://freesound.org/people/SamuelGremaud/sounds/517787/[/url]"
 
 [node name="EasterEgg" type="Area" parent="InfoObjects"]
 script = ExtResource( 8 )
@@ -137,8 +181,23 @@ __meta__ = {
 
 [node name="Water" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+visible = false
 mesh = SubResource( 12 )
 material/0 = ExtResource( 9 )
 
 [node name="Position3D" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, -9 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.4, 6.1 )
+script = ExtResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 13 )
+
+[node name="Area2" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.4, -6.2 )
+script = ExtResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2"]
+shape = SubResource( 13 )

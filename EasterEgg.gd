@@ -5,23 +5,20 @@ func _ready():
 	pass # Replace with function body.
 
 var duck = preload("res://Duck.tscn")
-
-var duck_spawned = false
+var duck_inst = null
 
 func interact():
 	if $"../../Water".visible:
-		if not duck_spawned:
-			var duck_inst = duck.instance()
+		if not duck_inst:
+			duck_inst = duck.instance()
 			$"../..".add_child(duck_inst)
 			duck_inst.transform.origin = $"../../Position3D".transform.origin
-			duck_spawned = true
+		duck_inst.get_node("AudioStreamPlayer3D").play()
 	else:
 		$"../../Water".show()
 	
 func get_hover_text():
 	if $"../../Water".visible:
-		if duck_spawned:
-			return null
 		return "Click for ???"
 	return "Click for water"
 	

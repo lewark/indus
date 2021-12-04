@@ -4,6 +4,7 @@ extends CenterContainer
 func _ready():
 	if OS.has_feature("web"):
 		$PanelContainer/VBoxContainer/Button2.hide()
+	$PanelContainer/VBoxContainer/Button.grab_focus()
 
 func _on_Button_pressed():
 	$"..".toggle_menu()

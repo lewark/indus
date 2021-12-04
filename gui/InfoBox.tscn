@@ -77,4 +77,5 @@ margin_right = 820.0
 margin_bottom = 396.0
 text = "Close"
 
+[connection signal="meta_clicked" from="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
