@@ -22,11 +22,7 @@ func _process(delta):
 	$Camera.transform.origin.z = cos(cam_angle) * cam_dist
 	
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED and not in_menu:
-		$Menu.show()
-		$Menu/PanelContainer/VBoxContainer/Button.grab_focus()
-		$Overlay.hide()
-		$Camera.current = true
-		in_menu = true
+		show_menu()
 
 #func _input(event):
 #	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
@@ -42,20 +38,28 @@ func show_gui(gui):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	in_menu = true
 	
+func show_menu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$Menu.show()
+	$Menu/PanelContainer/VBoxContainer/Button.grab_focus()
+	$Overlay.hide()
+	$GUI.hide()
+	$Camera.current = true
+	in_menu = true
+	for child in $GUI.get_children():
+		child.queue_free()
+
+func hide_menu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$Menu.hide()
+	$Overlay.show()
+	$Player/Camera.current = true
+	in_menu = false
+	for child in $GUI.get_children():
+		child.queue_free()
+
 func toggle_menu():
 	if not in_menu:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		$Menu.show()
-		$Menu/PanelContainer/VBoxContainer/Button.grab_focus()
-		$Overlay.hide()
-		$GUI.hide()
-		$Camera.current = true
-		in_menu = true
+		show_menu()
 	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		$Menu.hide()
-		$Overlay.show()
-		$Player/Camera.current = true
-		in_menu = false
-		for child in $GUI.get_children():
-			child.queue_free()
+		hide_menu()
