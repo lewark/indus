@@ -8,6 +8,7 @@ var cam_angle = 0
 #var vel = 0
 var pressed = false
 var in_menu = true
+var unfocus_time = 0
 
 func _ready():
 	pass # Replace with function body.
@@ -22,7 +23,12 @@ func _process(delta):
 	$Camera.transform.origin.z = cos(cam_angle) * cam_dist
 	
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED and not in_menu:
-		show_menu()
+		if unfocus_time > 0.5:
+			show_menu()
+		else:
+			unfocus_time += delta
+	else:
+		unfocus_time = 0
 
 #func _input(event):
 #	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
